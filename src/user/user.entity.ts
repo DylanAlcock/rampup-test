@@ -1,6 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne } from 'typeorm';
 import { Order } from '../order/order.entity';
 
+
 @Entity()
 export class User {
     @PrimaryGeneratedColumn("increment")
@@ -18,6 +19,6 @@ export class User {
     @Column({ default: true })
     isActive: boolean;
 
-    @OneToMany(type => Order, order => order.customer)
-    orders: Order[];
+    /*@OneToMany(type => Order, order => order.customer)
+    orders: Order[];*/
 }

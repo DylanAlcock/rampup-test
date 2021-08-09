@@ -24,19 +24,4 @@ export class UserController {
     getUser(@Param('user_id') id: number) {
         return this.userService.findOne(id);
     }
-
-
-    @Post()
-    addUser(
-        @Body('first_name') first_name: string,
-        @Body('last_name') last_name: string,
-        @Body('phone_number') phone_number: string,
-        @Body('product_id') product_id: number
-    ): any {
-        //User user = new User(first_name, last_name, phone_number);
-
-
-        //const generatedID = this.userService.insertUser(first_name, last_name, phone_number, product_id);
-        //return {id: generatedID}
-    }
 }

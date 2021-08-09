@@ -17,6 +17,7 @@ export class ProductService {
     }
 
     findOne(id: number): Promise<Product> {
+
         return this.usersRepository.findOne(id);
     }
 
