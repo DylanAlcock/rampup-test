@@ -1,6 +1,7 @@
 import { ParseIntPipe } from '@nestjs/common';
 import { HttpStatus } from '@nestjs/common';
 import { HttpException } from '@nestjs/common';
+import { HttpCode } from '@nestjs/common';
 import { Controller, Post, Body, Get, Param } from '@nestjs/common';
 import { ProductService } from '../product/product.service';
 import { UserService } from '../user/user.service';
@@ -30,6 +31,7 @@ export class OrderController {
 
 
     @Post()
+    @HttpCode(200)
     async addOrder(
         @Body('first_name') first_name: string,
         @Body('last_name') last_name: string,
