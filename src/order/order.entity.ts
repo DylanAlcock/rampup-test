@@ -1,7 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn, ManyToOne } from 'typeorm';
 import { User } from '../user/user.entity';
 import { Product } from '../product/product.entity';
-import { IsEmail, IsString, IsNotEmpty, MinLength } from 'class-validator';
 
 @Entity()
 export class Order {

@@ -1,13 +1,9 @@
-import { NotFoundException } from '@nestjs/common';
 import { ParseIntPipe } from '@nestjs/common';
-import { ValidationPipe } from '@nestjs/common';
 import { HttpStatus } from '@nestjs/common';
 import { HttpException } from '@nestjs/common';
 import { Controller, Post, Body, Get, Param } from '@nestjs/common';
-import { IsString } from 'class-validator';
 import { ProductService } from '../product/product.service';
 import { UserService } from '../user/user.service';
-import { CreateOrderDto } from './order.dto';
 
 import { OrderService } from './order.service';
 
@@ -43,6 +39,7 @@ export class OrderController {
 
         const product = await this.productService.findOne(product_id);
 
+        //Check if product_id is valid
         if (!product) {
             throw new HttpException({
                 status: HttpStatus.BAD_REQUEST,
@@ -50,6 +47,7 @@ export class OrderController {
             }, HttpStatus.BAD_REQUEST);
         }
 
+        //Check if user exists if not create, if user is not active throw error
         var user = await this.userService.findUser(first_name, last_name, phone_number);
         if (user === undefined) {
             user = await this.userService.createUser(first_name, last_name, phone_number);
@@ -60,6 +58,7 @@ export class OrderController {
             }, HttpStatus.BAD_REQUEST);
         }
 
+        //Check to make sure request parameters are not empty
         if (!first_name || !last_name || !phone_number) {
             throw new HttpException({
                 status: HttpStatus.BAD_REQUEST,
@@ -67,8 +66,8 @@ export class OrderController {
             }, HttpStatus.BAD_REQUEST);
         }
 
-        const order = await this.orderService.createOrder(first_name, last_name, phone_number, product_id);
 
+        const order = await this.orderService.createOrder(first_name, last_name, phone_number, product_id);
         return { order: order }
     }
 }

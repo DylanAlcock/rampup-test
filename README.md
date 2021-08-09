@@ -4,6 +4,10 @@ When in the project directory
 ```bash
 $ npm run start
 ```
+or
+```bash
+$ nest start
+```
 
 ## Total Hours Worked
 
